@@ -1,0 +1,25 @@
+name: Run tests
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Run JUnit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Java environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: adopt-hotspot
+          java-version: 8
+
+      - name: Download Bukkit.jar
+        run: wget "https://files.md-5.net/spigot/spigot-1.5.2-R1.1-SNAPSHOT.jar" -O lib/Bukkit.jar
+
+      - name: Run Gradle tests
+        run: ./gradlew test
