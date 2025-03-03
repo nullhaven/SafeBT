@@ -1,12 +1,13 @@
 name: Run publish
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
 
 jobs:
   test:
-    name: Run JUnit tests
+    name: Run Gradle publish
     runs-on: ubuntu-latest
 
     permissions:
